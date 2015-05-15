@@ -2,6 +2,8 @@
 <p><%= notice %></p>
 <% end %>
 
+<%= link_to 'Your Cart', cart_path(session[:cart_id]) %>
+
 <h1>Catalog of Activities</h1>
 
 <% @products.each do |product| %>
