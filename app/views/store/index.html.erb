@@ -7,7 +7,7 @@
 <% @products.each do |product| %>
   <%= image_tag(product.image_url, :style => "height:100px") %>
   <h3><%= link_to product.title,  product_path(product) %></h3>
-  <%= link_to truncate(product.description, length: 200), product_path(product) %><br>
+  <%= link_to truncate(product.description, length: 280), product_path(product) %><br>
   <%= number_to_currency(product.price) %>
   <%= button_to 'Add to Cart', line_items_path(product_id: product) %><br><hr>
 <% end %>
