@@ -8,7 +8,57 @@
 </head>
 <body>
 
-<%= yield %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2">
+          <%# Category.all.each do |category| %>
+          <%#= link_to category.name_cat, category_path(category) %>
+          <%# end %>
+          <%# if (current_user != nil)&&(current_user.is_admin == true) %>
+          <%#=link_to 'Add new category', new_category_path %>
+          <%# end %>
+
+
+<%if session[:cart_id] %>
+
+  <%= link_to 'Your Cart', cart_path(session[:cart_id])%>
+
+<%#= link_to 'Your Cart', cart_path(session[:cart_id]) if session[:cart_id] %>
+
+<table>
+  <% Cart.all.each do |item| %>
+
+    <% if item.total_price != ( nil|| 0 ) %>
+    <tr>
+      <td><%#= item.line_items.quantity %></td>
+      <td><%#= link_to item.product.title, product_path(item.product.id) %></td>
+      <td><%#= number_to_currency(item.total_price) %></td>
+    </tr>
+  <%# end %>
+      <tr>
+        <td colspan="2">Total</td>
+        <td><%= number_to_currency(item.total_price) if (item.total_price != ( nil|| 0 ) ) %></td>
+      </tr>
+    <% end %>
+      
+
+</table>
+
+
+<% end %>
+
+<% else %>
+
+'Your Cart is empty'
+
+<% end %>
+
+
+
+      </div>    
+      <div class="col-md-8"><%= yield %></div>
+    </div>
+  </div>
 
 </body>
 </html>
