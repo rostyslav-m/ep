@@ -11,12 +11,12 @@
   <div class="container">
     <div class="row">
       <div class="col-md-2">
-        <%# if (session[:cart_id] != nil) %>
-          <%= link_to 'Your Cart', cart_path(session[:cart_id]) if (session[:cart_id]) %><br>
-          <%= number_to_currency(Cart.find(session[:cart_id]).total_price) if (session[:cart_id]) %>
-        <%# else %>
-          <%= "Your Cart is empty"  if (session[:cart_id]) == nil %>
-        <%# end %>
+        <% if session[:cart_id] %>
+          <b><%= link_to 'Your Cart', cart_path(session[:cart_id]) %></b><br>
+          <b>Total: </b><%= number_to_currency(Cart.find(session[:cart_id]).total_price) %>
+        <% else %>
+          <b><%= "Your Cart is empty" %></b>
+        <% end %>
       </div>    
       
       <div class="col-md-8">

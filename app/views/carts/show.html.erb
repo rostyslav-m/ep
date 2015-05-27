@@ -2,11 +2,15 @@
 <p id="notice"><%= notice %></p>
 <% end %>
 <table>
-  <% @cart.line_items.each do |item| %>
+  <% @cart.line_items.each do |line_item| %>
     <tr>
-      <td width="50"><%= item.quantity %> &times; </td>
-      <td width="200"><%= link_to item.product.title, product_path(item.product.id) %></td>
-      <td><%= number_to_currency(item.total_price) %></td>
+      <td width="50"><%= line_item.quantity %> &times; </td>
+      <td width="200"><%= link_to line_item.product.title, product_path(line_item.product.id) %></td>
+      <td width="70"><%= number_to_currency(line_item.total_price) %></td>
+      <td width="50"><%= link_to 'Delete', line_item_path(line_item.id),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %></td>
+      </td>
     </tr>
   <% end %>
 </table>
